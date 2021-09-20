@@ -18,7 +18,13 @@ namespace SalesforceSharper
         private readonly ISerializer serializer;
         private readonly string apiVersion;
 
-        public SalesforceClient(string instanceUrl, string accessToken)
+        // expose the HTTP client, API Version and Serializer so that we can extend it easily
+        public HttpClient HttpClient => httpClient;
+        public string ApiVersion => apiVersion;
+
+        public ISerializer Serializer => serializer;
+
+         public SalesforceClient(string instanceUrl, string accessToken)
             : this(instanceUrl, accessToken, "v45.0", new JsonSerializer())
         {
 
